@@ -12,6 +12,7 @@
   "dependencies": {
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "tw-shift-schedule": "^2.1.1"
   }

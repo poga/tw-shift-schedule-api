@@ -1,6 +1,7 @@
 const App = require('koa')
 const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
+const logger = require('koa-logger')
 
 const PORT = process.env.PORT || 5000
 
@@ -10,9 +11,10 @@ let app = new App()
 let router = new Router()
 
 router.post('/validate', async function (ctx) {
-  if (!ctx.body.schedule) {
+  if (!ctx.request.body.schedule) {
     ctx.response.status = 406
     ctx.body = 'Invalid schedule data'
+    return
   }
 
   let schedule = shift.Schedule.fromTime(ctx.request.body.schedule)
@@ -22,6 +24,7 @@ router.post('/validate', async function (ctx) {
 })
 
 app
+  .use(logger())
   .use(bodyParser())
   .use(router.routes())
   .use(router.allowedMethods())
