@@ -2,6 +2,8 @@ const App = require('koa')
 const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
 
+const PORT = process.env.PORT || 5000
+
 const shift = require('tw-shift-schedule')
 
 let app = new App()
@@ -24,4 +26,4 @@ app
   .use(router.routes())
   .use(router.allowedMethods())
 
-app.listen(80)
+app.listen(PORT)
